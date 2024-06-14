@@ -15,11 +15,12 @@ export default function RegisterProduct({ navigation }) {
       source={require("../assets/img_fondo.jpg")}
       style={styles.background}
     >
-        <Image 
-          source={require('../assets/logo_fruit.png')}
+      <View style={styles.container}>
+        <Image
+          source={require("../assets/logo_fruit.png")}
           style={styles.logo}
         />
-      <View style={styles.container}>
+
         <Text style={styles.header}>Produtos</Text>
         <TextInput style={styles.input} placeholder="Nombre Producto" />
         <TextInput style={styles.input} placeholder="Código Producto" />
@@ -44,10 +45,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   container: {
-    width: "80%",
-    backgroundColor: "white",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    width: "100%",
+    height: "100%",
+    zIndex: 0,
     padding: 20,
     borderRadius: 10,
+    justifyContent: "center",
     alignItems: "center",
   },
   header: {
@@ -55,9 +59,9 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   logo: {
-    width: 150, 
-    height: 150, 
-    position: 'absolute',
+    width: 150,
+    height: 150,
+    position: "absolute",
     top: 50,
     right: 0,
   },
@@ -70,14 +74,14 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
   },
   button: {
-    width:200,
-    backgroundColor: '#871f1f',
+    width: 200,
+    backgroundColor: "#871f1f",
     padding: 15,
     borderRadius: 10,
-    alignItems: 'center',
+    alignItems: "center",
   },
   buttonText: {
-    color: '#fff',
+    color: "#fff",
     fontSize: 18,
   },
 });

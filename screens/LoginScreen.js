@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TextInput, TouchableOpacity, ImageBackground, StyleSheet, Image } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, ImageBackground, StyleSheet, Image} from 'react-native';
 
 const LoginScreen = ({ navigation }) => {
   return (
@@ -7,11 +7,13 @@ const LoginScreen = ({ navigation }) => {
       source={require('../assets/img_fondo.jpg')} 
       style={styles.background}
     >
-        <Image 
+      <View style={styles.container}>
+      <Image 
           source={require('../assets/logo_fruit.png')}
           style={styles.logo}
         />
-      <View style={styles.container}>
+
+        
         <TextInput
           style={styles.input}
           placeholder="correo electrónico"
@@ -28,15 +30,15 @@ const LoginScreen = ({ navigation }) => {
         <TouchableOpacity style={styles.button}>
           <Text style={styles.buttonText}>Ingresar</Text>
         </TouchableOpacity>
-        </View>
         <View>
           <Text style={styles.footerText}>Crear cuenta nueva</Text>
           <TouchableOpacity onPress={() => navigation.navigate("SingUp")}>
           <Text style={[styles.footerText, styles.linkText]}>Regístrate</Text>
           </TouchableOpacity>
           <Text style={[styles.footerText, styles.linkText]}>¿Olvidó contraseña?</Text>
-          
         </View>
+        </View>
+        
       
       </ImageBackground>
   );
@@ -49,7 +51,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   container: {
-    width: '80%',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    width: '100%',
+    height: '100%',
+    zIndex:0,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  container2: {
+    width:'80%',
+    height: 400,
+    backgroundColor:'white',
     padding: 20,
     borderRadius: 10,
     justifyContent: 'center',

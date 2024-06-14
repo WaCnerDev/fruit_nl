@@ -1,29 +1,67 @@
-import React from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, ImageBackground, Image } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, ImageBackground, Image, Alert} from 'react-native';
+
+// Import de Firebase
+import appFirebase from '../accesoFireBase';
+import { addDoc, collection, getFirestore } from "firebase/firestore";
+const db = getFirestore(appFirebase);
+
+
 
 export default function SignUp({ navigation }) {
+    //conector a base de datos
+    const RegistarUsuario = async(navigation)=>{
+      try {
+        await addDoc(collection(db, 'User'),{...estado})
+    
+        Alert.alert('Alerta', 'El usuario se registró con éxito')
+    
+        navigation.navigate('RegisterProduct')
+    
+      } catch  {
+        console.error(error)
+      }
+    }
+  
+    const inicioEstado = {
+      nombreCompleto: "",
+      correoElectronico: "",
+      contrasenna:""
+    };
+  
+    const [estado, setEstado] = useState(inicioEstado);
+  
+    const HandlerChangeText = (value, name) => {
+      setEstado({ ...estado, [name]: value });
+      console.log(estado);
+    };
   return (
     <ImageBackground 
     source={require('../assets/img_fondo.jpg')} 
     style={styles.background}
   >
+    <View style={styles.container}>
     <Image 
           source={require('../assets/logo_fruit.png')}
           style={styles.logo}
         />
-      <View style={styles.container}>
-      
         <Text style={styles.header}>Crear cuenta nueva</Text>
         <TextInput
+        onChangeText={(value) => HandlerChangeText(value, "nombreCompleto")}
+        value={estado.nombreCompleto}
           style={styles.input}
           placeholder="Nombre completo"
         />
         <TextInput
+        onChangeText={(value) => HandlerChangeText(value, "correoElectronico")}
+        value={estado.correoElectronico}
           style={styles.input}
           placeholder="Correo electrónico"
           keyboardType="email-address"
         />
         <TextInput
+        onChangeText={(value) => HandlerChangeText(value, "contrasenna")}
+        value={estado.contrasenna}
           style={styles.input}
           placeholder="Contraseña"
           secureTextEntry
@@ -33,7 +71,7 @@ export default function SignUp({ navigation }) {
           placeholder="Comprobar contraseña"
           secureTextEntry
         />
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("RegisterProduct")}>
+        <TouchableOpacity style={styles.button} onPress={() => RegistarUsuario(navigation)}>
           <Text style={styles.buttonText}>Registrarse</Text>
         </TouchableOpacity>
       </View>
@@ -48,10 +86,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   container: {
-    width: '80%',
-    backgroundColor: 'white',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    width: '100%',
+    height: '100%',
+    zIndex:0,
     padding: 20,
     borderRadius: 10,
+    justifyContent: 'center',
     alignItems: 'center',
   },
   button: {
@@ -70,12 +111,13 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   input: {
-    width: '100%',
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginBottom: 15,
-    paddingLeft: 10,
+    height: 50,
+    width: 300,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    paddingHorizontal: 10,
+    color: 'gray',
+    marginBottom: 20,
   },
   logo: {
     width: 150, // Ajusta este valor al tamaño que desees para el logo
