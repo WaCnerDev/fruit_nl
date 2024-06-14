@@ -74,6 +74,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 50,
     right: 0,
+    opacity: 0.5,
   },
   input: {
     height: 50,

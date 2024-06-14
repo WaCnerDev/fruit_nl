@@ -120,11 +120,12 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   logo: {
-    width: 150, // Ajusta este valor al tamaño que desees para el logo
-    height: 150, // Ajusta este valor al tamaño que desees para el logo
+    width: 150, 
+    height: 150, 
     position: 'absolute',
     top: 50,
     right: 0,
+    opacity: 0.5,
   },
   buttonContainer: {
     width: '100%',
